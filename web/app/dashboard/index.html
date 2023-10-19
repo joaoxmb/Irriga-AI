@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="https://i.imgur.com/PY6ZWXb.png">
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="./style.css">
+  
+  <title>Irriga AI</title>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Irriga AI</h1>
+      <p><span id="system-city">São Paulo</span> - <span id="system-data">26/09/2023</span></p>
+    </div>
+  </header>
+  <div id="warning">
+    <div class="container">
+      <div>
+        <h2>Sensor fora do terra !</h2>
+        <p>Verifique se o sensor está instalado corretamente. Ele deve ficar completamente embaixo da terra.</p>
+      </div>
+    </div>
+  </div>
+  <section id="status">
+    <div class="container">
+      <div class="talk">
+        <div>
+          <img src="https://i.imgur.com/zFXpOlN.png" alt="Ia">
+          <ul id="chat"></ul>
+        </div>
+      </div>
+      <div class="infos">
+        <div class="umidity">
+          <h4>Umidade</h4>
+          <div>
+            <h3 id="system-umidty">80</h3>
+            <span>%</span>
+          </div>
+        </div>
+        <div class="temperature">
+          <h4>Temperatura</h4>
+          <div>
+            <h3 id="system-temperature">22</h3>
+            <span>ºC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="watering">
+    <div class="container">
+      <h2>Rega</h2>
+      <p>Cronograma semanal de rega para a planta, você tambem pode alterar os dias de rega clicando encima de cada um.</p>
+      <ul id="semana">
+        <li>
+          <label>
+            <span>dom</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li class="today">
+          <label>
+            <span>seg</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li>
+          <label>
+            <span>ter</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li>
+          <label>
+            <span>qua</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li>
+          <label>
+            <span>qui</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li>
+          <label>
+            <span>sext</span>
+            <input type="checkbox">
+          </label>
+        </li>
+        <li>
+          <label>
+            <span>sáb</span>
+            <input type="checkbox">
+          </label>
+        </li>
+      </ul>
+      <p class="status"></p>
+    </div>
+  </section>
+  <section id="about">
+    <div class="container">
+      <h2>Sobre</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem possimus deserunt quasi? Consequatur fugiat rerum placeat? Totam sint, quis asperiores, quod, facere eveniet debitis iste dolor optio quisquam voluptatum eum.</p>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div>
+        <p>Desenvolvido por Camila Nishioka</p>
+        <p>ETEC Gildo Marçal Bezerra Brandão</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../lib/jquery-3.7.1.min.js"></script>
+  <script src="../../lib/moment.min.js"></script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
