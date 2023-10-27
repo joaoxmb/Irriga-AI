@@ -182,8 +182,8 @@ void requerirPaginaWeb(String serverPath, String adicional) {
 }
 
 void paginaConfig() { // Funcao que envia o site de configuracao para o usuario.
-  requerirPaginaWeb("https://raw.githubusercontent.com/joaoxmb/irriga-ai/web/web/app/config/index.html", "<script>const _OPENAI_KEY = \"\";</script>");
+  requerirPaginaWeb("https://raw.githack.com/joaoxmb/irriga-ai/main/web/app/config/index.html", "<script>const _OPENAI_KEY = \"\";</script>");
 }
 void paginaDash() { // Funcao que envia o site de inicio para o usuario.
-  requerirPaginaWeb("https://raw.githubusercontent.com/joaoxmb/irriga-ai/web/web/app/dashboard/index.html", "");
+  requerirPaginaWeb("https://raw.githack.com/joaoxmb/irriga-ai/main/web/app/dashboard/index.html", "");
 }
