@@ -76,7 +76,7 @@ async function perguntarPlanta() {
 async function inserirNoSistema() {
   await chat("ia", { text: "Aguarde..." });
   await espRequest({
-    body: {...PARAMS, ...SYSTEM.userName}, 
+    body: {...PARAMS, userNome: SYSTEM.userName}, 
     method: "POST",
     type: "config"
   })
