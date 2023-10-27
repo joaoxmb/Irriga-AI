@@ -1,0 +1,48 @@
+.container {
+  min-height: 100vh;
+}
+
+#start {
+  text-align: center;
+}
+
+#start>.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#start h1 {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+#start h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #9f9f9f;
+}
+
+#start img {
+  width: 60%;
+}
+
+#config {
+  display: none;
+}
+
+#config>.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#config>.container>div {
+  min-height: 80vh;
+  margin-top: 80px;
+  padding: 30px 30px 50vh 30px;
+  background-color: #f1f1f1;
+  border-radius: 30px 30px 0 0;
+}

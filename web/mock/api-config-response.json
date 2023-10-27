@@ -1,0 +1,38 @@
+{
+  "userNome": "Joao Victor",
+  "configurado": false,
+  "umidade": {
+    "min":  30,
+    "max": 80
+  },
+  "planta": {
+    "nome": "Maça",
+    "sobre": "Sobre a planta",
+    "resumo": "Resumo da planta"
+  },
+  "cidade": {
+    "nome": "SP",
+    "coordenadas": [
+      -22,
+      -44
+    ]
+  },
+  "seguranca": true,
+  "semana": [
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true
+  ],
+  "temperatura": {
+    "graus": [15, 35],
+    "dicas": [
+      "dica de quando tiver abaixo",
+      "dica de quando tiver ideal",
+      "dica quando tiver acima"
+    ]
+  }
+}
