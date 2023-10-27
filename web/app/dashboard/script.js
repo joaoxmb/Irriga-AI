@@ -51,7 +51,6 @@ function salutation() {
   }
   return "Boa noite";
 }
-
 function getTemperature(coordenadas) {
   const url = "https://api.open-meteo.com/v1/forecast";
   const params = `?latitude=${coordenadas[0]}&longitude=${coordenadas[1]}&hourly=temperature_2m`;
@@ -76,13 +75,63 @@ function getTemperature(coordenadas) {
     });
 }
 
+function week(semana) {
+  const elementoSemana = $("#semana").html("");
+  const diaDaSemana = Number(moment().format("d"));
+  const nomesDiasDaSemana = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+  
+  const handleSemana = (index, input) => {
+    const value = $(input).is(":checked");
+    let list = [...CONFIG.semana];
+
+    list[index] = value;
+
+    const status = $("#watering .status")
+    .text("Enviando cronograma atualizado para o sistema...")
+    .slideDown(1000);
+
+    espSendConfig({semana: list}, () => {
+      status.text("Cronograma enviado com sucesso!")
+    });
+  };
+  
+  semana.forEach((dia, index) => {
+    $(`<li ${diaDaSemana === index ? "class='today'" : ""}>
+        <label>
+          <span>${nomesDiasDaSemana[index]}</span>
+          <input type="checkbox" ${dia ? "checked" : ""}>
+          <div class="checkmark"></div>
+        </label>
+      </li>`)
+    .appendTo(elementoSemana).click((e) => handleSemana(index, e.target))
+  });
+}
+
+let send;
+function espSendConfig(params, callback) {
+  clearTimeout(send);
+  send = setTimeout(() => {
+    espRequest({body: {...params}, method: "POST", type: "config"})
+      .then((response) => response.json())
+      .then((data) => {
+        if (callback !== undefined) {
+          return callback(data);
+        }
+      })
+      .catch((error) => {
+        console.log("Houve um erro ao enviar os parametros, tentando novamente", error);
+        espSendConfig(params);
+      })
+  }, 3000);
+};
+
 $(() => {
   loading.enable()
 
   getConfig()
     .then(async () => {
       insert.about({...CONFIG.planta});
-      insert.week([...CONFIG.semana]);
+      week([...CONFIG.semana]);
 
       await getInfo();
       await getTemperature([...CONFIG.cidade.coordenadas]);
