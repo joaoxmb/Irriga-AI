@@ -125,6 +125,10 @@ void regar() {
     } else if (CONFIG["seguranca"]) { // Se o dia não estiver para regar e o modo de seguranca estiver ativado
       lidaComRele();
     }
+    return;
+  }
+  if (INFO["umidade"] == 0) {
+    digitalWrite(relePorta, LOW);
   }
 }
 
