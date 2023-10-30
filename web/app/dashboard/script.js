@@ -143,25 +143,22 @@ $(() => {
       loading.disable()
 
       const humidityStatus = () => {
-        if (INFO.umidade === 0){
-          return "Parece que sensor está mal instalado, é melhor você dar uma conferida."
-        }
         if (INFO.umidade < CONFIG.umidade.min) {
-          return "A umidade do solo está abaixo do ideal para ela. Fique tranquilo que irei ativar o sistema de rega!"
+          return "A umidade do solo está abaixo do ideal, estarei ligando o sistema de rega!"
         }
         if (INFO.umidade > CONFIG.umidade.max) {
-          return "A umidade do solo está acima do ideal, fique tranquilo que não estarei regando."
+          return "Analisei os dados do sistema e constatei que a umidade do solo está acima do ideal. O sistema de rega está desabilitado!"
         }
-        return `A umidade do solo está ideal para ${CONFIG.planta.nome}!`
+        return `O solo de sua(seu) ${CONFIG.planta.nome} está com a umidade adequada!`
       };
       const temperatureStatus = () => {
         if (INFO.temperatura < CONFIG.temperatura.graus[0]) {
-          return CONFIG.temperatura.dicas[0];
+          return `A temperatura de ${CONFIG.cidade.nome} está abaixo do recomendado para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[0];
         }
         if (INFO.temperatura > CONFIG.temperatura.graus[1]) {
-          return CONFIG.temperatura.dicas[3];
+          return `A temperatura atual está acima do recomendado para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[3];
         }
-        return CONFIG.temperatura.dicas[1];
+        return `A temperatura agora em ${CONFIG.cidade.nome} está adequada para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[1];
       };
 
       await delay(1000);
