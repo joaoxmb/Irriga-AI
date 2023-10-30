@@ -64,7 +64,7 @@ async function perguntarNome() {
 }
 async function perguntarCidade() {
   await chat("ia", { text: `Prazer em conhecê-lo(a) ${SYSTEM.userName} 😉`, delay: 1000 })
-  await chat("ia", { text: `${SYSTEM.userName.split(" ")[0]}, qual a sua idade?` })
+  await chat("ia", { text: `${SYSTEM.userName.split(" ")[0]}, qual a sua cidade?` })
   await chat("user", { text: "Nome da sua cidade..."}, (city) => {SYSTEM.city = city;})
   await chat("ia", { text: `Que legal! Adoro a cidade de ${SYSTEM.city} 🌇` })
 }

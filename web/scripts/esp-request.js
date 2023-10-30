@@ -3,6 +3,8 @@ export default function espRequest({body, method, type}) {
   const url = `http://irrigaai.local/api/${type}`;
   let params = {method: method};
 
+  console.log(body);
+
   if (body !== undefined) {
     params = {
       ...params,
