@@ -14,14 +14,14 @@
 StaticJsonDocument<1536> CONFIG; // Toda configuracao do sistema, umidade, planta, temperatura etc...
 StaticJsonDocument<60> INFO; // Umidade captada pelo sensor
 
-unsigned long previousMillis = 0;  // will store last time LED was updated
+unsigned long previousMillis = 0;
 const long interval = 1000; 
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 
 WiFiManager wm;
-ESP8266WebServer server(80); // Inicia servidor na porta 80
+ESP8266WebServer server(80);
 
 void setup() {
   Serial.begin(9600);
@@ -78,9 +78,20 @@ void postConfigAPI() {
     Serial.println(error.f_str());
     return;
   }
+  if (!CONFIG["configurado"]) {
+    CONFIG = RECEPTOR;
+    CONFIG["configurado"] = true;
+    return;
+  }
 
-  CONFIG["configurado"] = true;
-  mesclarJson(CONFIG, RECEPTOR);
+  CONFIG["semana"][0] = RECEPTOR["semana"][0] | false;
+  CONFIG["semana"][1] = RECEPTOR["semana"][1] | false;
+  CONFIG["semana"][2] = RECEPTOR["semana"][2] | false;
+  CONFIG["semana"][3] = RECEPTOR["semana"][3] | false;
+  CONFIG["semana"][4] = RECEPTOR["semana"][4] | false;
+  CONFIG["semana"][5] = RECEPTOR["semana"][5] | false;
+  CONFIG["semana"][6] = RECEPTOR["semana"][6] | true;
+
   server.send(200, "text/json", CONFIG.as<String>());
 }
 void getConfigAPI() {
@@ -148,20 +159,6 @@ void desconectarWifi() {
   ESP.reset();
 }
 
-void mesclarJson(JsonVariant dst, JsonVariantConst src) {
-  if (src.is<JsonObjectConst>()) {
-    for (JsonPairConst kvp : src.as<JsonObjectConst>()) {
-      if (dst[kvp.key()]) {
-        mesclarJson(dst[kvp.key()], kvp.value());
-      } else {
-        dst[kvp.key()] = kvp.value();
-      }
-    }
-  } else {
-    dst.set(src);
-  }
-}
-
 void requerirPaginaWeb(String serverPath, String adicional) {
   if(WiFi.status() != WL_CONNECTED){
     return;
@@ -186,7 +183,7 @@ void requerirPaginaWeb(String serverPath, String adicional) {
 }
 
 void paginaConfig() { // Funcao que envia o site de configuracao para o usuario.
-  requerirPaginaWeb("https://raw.githack.com/joaoxmb/irriga-ai/main/web/app/config/index.html", "<script>const _OPENAI_KEY = \"\";</script>");
+  requerirPaginaWeb("https://raw.githack.com/joaoxmb/irriga-ai/main/web/app/config/index.html", "<script>const _OPENAI_KEY = \"sk-\";</script>");
 }
 void paginaDash() { // Funcao que envia o site de inicio para o usuario.
   requerirPaginaWeb("https://raw.githack.com/joaoxmb/irriga-ai/main/web/app/dashboard/index.html", "");

@@ -82,15 +82,13 @@ function week(semana) {
   
   const handleSemana = (index, input) => {
     const value = $(input).is(":checked");
-    let list = [...CONFIG.semana];
-
-    list[index] = value;
+    CONFIG.semana[index] = value;
 
     const status = $("#watering .status")
-    .text("Enviando cronograma atualizado para o sistema...")
-    .slideDown(1000);
+      .text("Enviando cronograma atualizado para o sistema...")
+      .slideDown(1000);
 
-    espSendConfig({semana: list}, () => {
+    espSendConfig({semana: [...CONFIG.semana]}, () => {
       status.text("Cronograma enviado com sucesso!")
     });
   };
@@ -111,7 +109,7 @@ let send;
 function espSendConfig(params, callback) {
   clearTimeout(send);
   send = setTimeout(() => {
-    espRequest({body: {...params}, method: "POST", type: "config"})
+    espRequest({body: params, method: "POST", type: "config"})
       .then((response) => response.json())
       .then((data) => {
         if (callback !== undefined) {
@@ -120,7 +118,7 @@ function espSendConfig(params, callback) {
       })
       .catch((error) => {
         console.log("Houve um erro ao enviar os parametros, tentando novamente", error);
-        espSendConfig(params);
+        espSendConfig(params, callback);
       })
   }, 3000);
 };
