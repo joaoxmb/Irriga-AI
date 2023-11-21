@@ -119,9 +119,13 @@ void lerUmidade() {
   INFO["umidade"] = porcentagem;
 }
 void lidaComRele() {
+  int horas = timeClient.getHours(); // horas atual
+  
   if (INFO["umidade"] <= CONFIG["umidade"]["min"]) {
+    if (horas > 9 && horas < 16) { // periodo que não queremos que regue
+      return;
+    }
     digitalWrite(relePorta, HIGH); // liga sistema
-    return;
   }
   if(INFO["umidade"] >= CONFIG["umidade"]["max"]) {
     digitalWrite(relePorta, LOW); // Desliga sistema
