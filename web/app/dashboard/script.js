@@ -126,8 +126,6 @@ function espSendConfig(params, callback) {
 };
 
 $(() => {
-  loading.enable()
-
   getConfig()
     .then(async () => {
       insert.about({...CONFIG.planta});
