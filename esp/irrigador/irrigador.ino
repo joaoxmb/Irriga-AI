@@ -112,7 +112,7 @@ void postResetAPI() {
 
 void lerUmidade() {
   double ler = analogRead(sensorPorta);
-  double porcentagem = (((ler - 1024) / (200 - 1024)) * 100);
+  double porcentagem = (((ler - 1024) / (280 - 1024)) * 100);
   porcentagem = min(porcentagem, 100.0);
   porcentagem = max(porcentagem, 0.0);
 
@@ -120,7 +120,7 @@ void lerUmidade() {
 }
 void lidaComRele() {
   int horas = timeClient.getHours(); // horas atual
-  
+
   if (INFO["umidade"] <= CONFIG["umidade"]["min"]) {
     if (horas > 9 && horas < 16) { // periodo que não queremos que regue
       return;
