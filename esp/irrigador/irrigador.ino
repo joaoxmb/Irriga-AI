@@ -40,7 +40,7 @@ StaticJsonDocument<1536> CONFIG;
 StaticJsonDocument<60> INFO;
 
 /*
-  Muito complexo de escrever, despois explico. 
+  Muito complexo de escrever. 
   De forma rapida, é responsavel por criar delay no código sem atrapalhar na velocidade de resposta do servidor ao acessar o site do sistema.
 
   @previusMillis é os segundos atuais do esp
