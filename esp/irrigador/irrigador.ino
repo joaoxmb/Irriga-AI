@@ -97,7 +97,8 @@ void setup() {
   iniciarWifi();
 
   /*
-    Essa é a parte que criamos a nossa prorpia API, é onde falamos para o servidor o que ele deve responder para quem estiver acessando - usuario. Ou seja, quando acessarmos <irrigaai.local> ele identificara que você está pedindo/HTTP_GET a pagina do site, e quando ele detecta isso ele aexecuta outra funcão
+    Essa é a parte que criamos a nossa prorpia API, é onde falamos para o servidor o que ele deve responder para quem estiver acessando - usuario. Ou seja, 
+    quando acessarmos <irrigaai.local> ele identificara que você está pedindo/HTTP_GET a pagina do site, e quando ele detecta isso ele aexecuta outra funcão
 
     Para isso usamos a funcaoc server.on() - devemos passar para essa funcao o link de acesso, o método e a funcao que ele executara quando for acessado.
 
