@@ -6,7 +6,8 @@
     3. DNS - altera o link do servidor que são numeros para "irrigaai.local"
     4. WifiManager - cria uma rede wifi própria para o usuario se conectar e conseguir conectar o esp no wifi diretamente do celular
     5. ArduinoJson - responsavel por deixar com que conseguimos trabalhar com json na linguagem do esp - c++
-    6. HTTPClient - identifica o que o usuario está acessando do seu servidor e redireciona-lo - exemplo: o usuario acessa o <http://irriga.local/>, ele identifica que o usuario está pedindo/GET para acessar a página "/". Com isso podemos redirecionar para a pagina inicial
+    6. HTTPClient - identifica o que o usuario está acessando do seu servidor e redireciona-lo - exemplo: o usuario acessa o <http://irriga.local/>, 
+    ele identifica que o usuario está pedindo/GET para acessar a página "/". Com isso podemos redirecionar para a pagina inicial
     7. HTTPClientSecure - permite o sistema/esp pedir informacoes da internet - acessar
     8. NTPClient - responsavel por pegar o horario atual da internet
     9. WifiUdp - responsavel por pegar o horario atual da internet
