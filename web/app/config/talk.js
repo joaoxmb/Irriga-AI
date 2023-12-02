@@ -21,10 +21,6 @@ async function definirParametros() {
     },
     {
       "role": "system",
-      "content": "Reveja todos os parâmetros que você definiu e corriga possíveis erros."
-    },
-    {
-      "role": "system",
       "content": "Retorne o seguinte JSON com os resultados: { \"umidade\": { \"min\": MIN-UMIDADE, \"max\": MAX-UMIDADE }, \"planta\": { \"nome\": PLANTA, \"sobre\": SOBRE }, \"cidade\": { \"nome\": CIDADE>NOME, \"coordenadas\": [CIDADE>LATITUDE, CIDADE>LONGITUDE] }, \"seguranca\": [ MODO-SEGURANCA, MODO-SEGURANCA-MOTIVO ], \"semana\": [SEMANA], \"temperatura\": { \"graus\": [TEMPERATURA>MINIMA, TEMPERATURA>MAXIMA], \"dicas\": [TEMPERATURA-DICAS] }, \"status\": STATUS, \"mensagem\": MENSAGEM }"
     }
   ]
