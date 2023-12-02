@@ -59,10 +59,16 @@ function week(semana) {
       .appendTo(elementoSemana).click((e) => handleSemana(index, e.target))
   });
 }
+function security(security) {
+  $("#security").text(
+    `O modo de segurança está ${security[0] ? 'ativado':'desativado'}! ${security[1]}`
+  )
+}
 
 export {
   date,
   about,
   week,
-  temperature
+  temperature,
+  security
 }

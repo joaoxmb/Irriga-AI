@@ -116,6 +116,7 @@ const app = async () => {
       insert.about({...CONFIG.planta});
       insert.week([...CONFIG.semana]);
       insert.temperature(INFO.temperatura);
+      insert.security(CONFIG.seguranca);
       loading.disable();
   
       setInterval(async () => {

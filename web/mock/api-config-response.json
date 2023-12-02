@@ -1,25 +1,25 @@
 {
-  "userNome": "Joao Victor",
-  "configurado": false,
   "umidade": {
-    "min":  30,
+    "min": 40,
     "max": 80
   },
   "planta": {
-    "nome": "Maça",
-    "sobre": "Sobre a planta",
-    "resumo": "Resumo da planta"
+    "nome": "Jiboia",
+    "sobre": "A Jiboia, também conhecida como Epipremnum pinnatum, é uma planta com folhagem exuberante, de folhas verdes e brilhantes. É uma trepadeira que pode ser cultivada tanto em ambientes internos quanto externos, desde que receba iluminação indireta. É uma planta de fácil cuidado e se adapta muito bem a ambientes urbanos."
   },
   "cidade": {
-    "nome": "SP",
+    "nome": "São Paulo",
     "coordenadas": [
-      -22,
-      -44
+      -23.5505,
+      -46.6333
     ]
   },
-  "seguranca": true,
-  "semana": [
+  "seguranca": [
     true,
+    "A Jiboia prefere manter o solo úmido, e a falta de água pode afetar negativamente a planta."
+  ],
+  "semana": [
+    false,
     true,
     false,
     false,
@@ -28,11 +28,16 @@
     true
   ],
   "temperatura": {
-    "graus": [15, 35],
+    "graus": [
+      15,
+      28
+    ],
     "dicas": [
-      "dica de quando tiver abaixo",
-      "dica de quando tiver ideal",
-      "dica quando tiver acima"
+      "Mantenha a planta aquecida.",
+      "Temperatura ideal para o crescimento saudável da Jiboia.",
+      "O calor excessivo pode prejudicar a planta."
     ]
-  }
+  },
+  "userNome": "Joao",
+  "configurado": true
 }
