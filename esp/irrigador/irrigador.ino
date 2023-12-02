@@ -158,10 +158,10 @@ void regar() {
 
 void iniciarWifi() {
   if (!wm.autoConnect("Irriga AI", "12345678")) {
-    Serial.println("Failed to connect");
+    Serial.println("Falha ao se conectar com a internet.");
     ESP.restart();
   } 
-  Serial.println("connected...yeey :)");
+  Serial.println(F("Conectado com a internet!"));
   
   MDNS.begin("irrigaai");
   MDNS.addService("http", "tcp", 80);
@@ -189,7 +189,7 @@ void requerirPaginaWeb(String serverPath, String adicional) {
     String payload = http.getString();
     server.send(200, "text/html", adicional + payload);
   } else {
-    Serial.print("Error code: ");
+    Serial.print("Erro ao capturar código do site: ");
     Serial.println(httpResponseCode);
   }
   http.end();
