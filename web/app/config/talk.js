@@ -13,7 +13,7 @@ async function definirParametros() {
     },
     {
       "role": "user",
-      "content": `planta=${SYSTEM.plant}; cidade=${SYSTEM.city}`
+      "content": `planta=${SYSTEM.plant};`
     },
     {
       "role": "user",
