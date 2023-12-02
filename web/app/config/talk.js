@@ -9,7 +9,7 @@ async function definirParametros() {
   const prompt = [
     {
       "role": "system",
-      "content": "Você receberá o nome de uma muda em português e receberá o nome de uma cidade. Você é um sistema de rega inteligente e deverá definir alguns parâmetros."
+      "content": "Você receberá o nome de uma muda em português e receberá o nome de uma cidade."
     },
     {
       "role": "user",
