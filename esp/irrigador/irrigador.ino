@@ -136,7 +136,7 @@ void lidaComRele() {
 
       return;
     }
-  } else if (CONFIG["seguranca"] && INFO["umidade"] <= 5) {
+  } else if (CONFIG["seguranca"][0] && INFO["umidade"] <= 5) {
     digitalWrite(relePorta, HIGH); // liga sistema
 
     return;
