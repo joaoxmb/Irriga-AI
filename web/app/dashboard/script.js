@@ -91,6 +91,9 @@ const getEssentialParams = async () => {
 }
 
 const humidityStatus = () => {
+  if (INFO.umidade == 0){
+    return "O sensor está instalado incorretamente!"
+  }
   if (INFO.umidade < CONFIG.umidade.min) {
     return "A umidade do solo está abaixo do ideal, estarei ligando o sistema de rega!"
   }
@@ -101,12 +104,12 @@ const humidityStatus = () => {
 };
 const temperatureStatus = () => {
   if (INFO.temperatura < CONFIG.temperatura.graus[0]) {
-    return `A temperatura de ${CONFIG.cidade.nome} está abaixo do recomendado para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[0];
+    return CONFIG.temperatura.dicas[0];
   }
   if (INFO.temperatura > CONFIG.temperatura.graus[1]) {
-    return `A temperatura atual está acima do recomendado para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[3];
+    return CONFIG.temperatura.dicas[3];
   }
-  return `A temperatura agora em ${CONFIG.cidade.nome} está adequada para ${CONFIG.planta.nome}! ` + CONFIG.temperatura.dicas[1];
+  return CONFIG.temperatura.dicas[1];
 };
 
 const app = async () => {
