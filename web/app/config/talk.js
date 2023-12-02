@@ -26,12 +26,16 @@ async function definirParametros() {
   ]
   const promptSecondary = [
     {
-      "role": "system",
+      "role": "user",
       "content": ""
     },
     {
       "role": "system",
-      "content": "Retorne o seguinte JSON com os resultados: { \"umidade\": { \"min\": MIN-UMIDADE, \"max\": MAX-UMIDADE }, \"planta\": { \"nome\": PLANTA, \"sobre\": SOBRE }, \"cidade\": { \"nome\": CIDADE>NOME, \"coordenadas\": [CIDADE>LATITUDE, CIDADE>LONGITUDE] }, \"seguranca\": [ MODO-SEGURANCA, MODO-SEGURANCA-MOTIVO ], \"semana\": [SEMANA], \"temperatura\": { \"graus\": [TEMPERATURA>MINIMA, TEMPERATURA>MAXIMA], \"dicas\": [TEMPERATURA-DICAS] }, \"status\": STATUS, \"mensagem\": MENSAGEM }"
+      "content": "retorne um json com a estrutura especificada abaixo com os dados passados pelo usuario."
+    },
+    {
+      "role": "system",
+      "content": "{ \"umidade\": { \"min\": MIN-UMIDADE, \"max\": MAX-UMIDADE }, \"planta\": { \"nome\": PLANTA, \"sobre\": SOBRE }, \"cidade\": { \"nome\": CIDADE>NOME, \"coordenadas\": [CIDADE>LATITUDE, CIDADE>LONGITUDE] }, \"seguranca\": [ MODO-SEGURANCA, MODO-SEGURANCA-MOTIVO ], \"semana\": [SEMANA], \"temperatura\": { \"graus\": [TEMPERATURA>MINIMA, TEMPERATURA>MAXIMA], \"dicas\": [TEMPERATURA-DICAS] }, \"status\": STATUS, \"mensagem\": MENSAGEM }"
     }
   ]
   await aiRequest(promptPrimary)
@@ -40,6 +44,7 @@ async function definirParametros() {
 
       await aiRequest(promptSecondary)
         .then(async (data) => {
+          data = JSON.parse(data);
           PARAMS = {...data};
     
           console.log(PARAMS);

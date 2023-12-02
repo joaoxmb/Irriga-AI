@@ -19,15 +19,17 @@ export default function aiRequest(prompt) {
     try{
       const request = await fetch(url, params)
       const response = await request.json();
-      const data = await JSON.parse(response.choices[0].message.content);
+      const data = response.choices[0].message.content;
 
-      if (data.status !== "OK") {
-        reject(data)
-      } else {
-        delete data.mensagem
-        delete data.status
-        resolve(data);
-      }
+      // if (data.status !== "OK") {
+      //   reject(data)
+      // } else {
+      //   delete data.mensagem
+      //   delete data.status
+      //   resolve(data);
+      // }
+
+      resolve(data)
   
     } catch {
       reject({status: "ERROR", mensagem: "Erro ao se comunicar com o servidor!"})
