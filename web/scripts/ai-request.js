@@ -1,4 +1,4 @@
-// import "../private.js"; // Dev Dep
+// import {_OPENAI_KEY} from "../private.js"; // Dev Dep
 
 export default function aiRequest(prompt) {
   const url = "https://api.openai.com/v1/chat/completions";
@@ -9,9 +9,9 @@ export default function aiRequest(prompt) {
       "Authorization": `Bearer ${_OPENAI_KEY}`
     },
     "body": JSON.stringify({
-      model: "gpt-3.5-turbo",
       messages: [...prompt],
-      temperature: 0.7
+      temperature: 1,
+      model: "gpt-3.5-turbo-1106"
     })
   }
 

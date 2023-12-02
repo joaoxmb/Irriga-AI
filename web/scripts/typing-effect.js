@@ -1,6 +1,6 @@
 export default function typingEffect(string, element) {
   return new Promise((resolve) => {
-    let count = 0;
+    let count = 1;
   
     const effect = setInterval(() => {
       if (count <= string.length) {
@@ -11,6 +11,6 @@ export default function typingEffect(string, element) {
       }
       clearInterval(effect);
       resolve();
-    }, 40)
+    }, 25)
   })
 } 

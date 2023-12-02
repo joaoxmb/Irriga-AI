@@ -45,7 +45,7 @@ void setup() {
 
   server.begin();
   timeClient.begin();
-  timeClient.setTimeOffset(0);
+  timeClient.setTimeOffset(-10800);
 }
 
 void loop() {
@@ -82,7 +82,7 @@ void postConfigAPI() {
     CONFIG = RECEPTOR;
     CONFIG["configurado"] = true;
     server.send(200, "text/json", F("{\"status\": \"OK\"}"));
-    Serial.println(F("Configuração recebida e alocada com sucesso!"))
+    Serial.println(F("Configuração recebida e alocada com sucesso!"));
     return;
   }
 
@@ -95,7 +95,7 @@ void postConfigAPI() {
   CONFIG["semana"][6] = RECEPTOR["semana"][6] | true;
 
   server.send(200, "text/json", F("{\"status\": \"OK\"}"));
-  Serial.println(F("Novo cronograma de rega recebido e alocado com sucesso!"))
+  Serial.println(F("Novo cronograma de rega recebido e alocado com sucesso!"));
 }
 void getConfigAPI() {
   server.send(200, "text/json", CONFIG.as<String>());
@@ -123,8 +123,6 @@ void lerUmidade() {
 }
 void lidaComRele() {
   int horas = timeClient.getHours(); // horas atual
-  Serial.print(F("Horas: "));
-  Serial.printls(horas);
 
   if (horas > 9 && horas < 16) { // periodo que não queremos que regue
     return;
