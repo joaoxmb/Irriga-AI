@@ -16,6 +16,10 @@ async function definirParametros() {
       "content": `planta=${SYSTEM.plant}; cidade=${SYSTEM.city}`
     },
     {
+      "role": "user",
+      "content": `cidade=${SYSTEM.city}`
+    },
+    {
       "role": "system",
       "content": "Agora defina os seguintes parametros: STATUS: com base na planta que foi passada pelo usuario, se ela for realmente uma planta verdadeira coloque OK, caso contrario ERROR. MENSAGEM: descreva o porque de OK ou ERROR. PLANTA: escreva o nome da planta com o primeiro caractere maiúsculo. SOBRE: escreva um texto de 10 linhas sobre a planta e suas características. MAX-UMIDADE: escreva um valor de 0 a 100 que represente a umidade maxima do solo suportada pela planta levando em consideração sua necessidade hídrica, esse valor não pode ser superior doque 90. MIN-UMIDADE: escreva um valor de 0 a 100 que represente a umidade minima do solo suportada pela planta levando em consideração sua necessidade hídrica, esse valor não pode ser abaixo de 10. SEMANA: crie um plano semanal de rega para a planta com base em sua necessidade hidrica. Insira ele dentro de um array de boleanos, o array começa pelo domingo, coloque true se for para regar e false caso contrario, repita para os 7 dias da semana, o ultimo valor deverá ser sempre true. MODO-SEGURANCA: se a planta sofrer algum tipo de dano caso a umidade do solo fique abaixo de 5% coloque true, caso contrario false. Geralmente espécies de cactos não sofrem com essa baixa umidade. MODO-SEGURANCA-MOTIVO: descreva o motivo pelo qual você tomou a decisao ao definir MODO-SEGURANCA. CIDADE: escreva o nome da cidade formatado e a latitude e longitude da cidade em um array, a cidade será passada pelo usuario. TEMPERATURA: escreva a temperatura minima e temperatura maxima em um array que seja ideal para a planta passada pelo usuario. TEMPERATURA-DICAS: escreva uma mensagem para quando a temperatura estiver abaixo do limite para a planta, quando a temperatura estiver adequado para a planta e quando a temperatura estiver a mais para a planta em um array crescente."
     },
