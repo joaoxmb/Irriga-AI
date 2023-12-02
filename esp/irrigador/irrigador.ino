@@ -74,13 +74,15 @@ void postConfigAPI() {
   DeserializationError error = deserializeJson(RECEPTOR, server.arg("plain"));
 
   if (error) {
-    Serial.print(F("deserializeJson() failed: "));
+    Serial.print(F("Erro ao converter JSON:"));
     Serial.println(error.f_str());
     return;
   }
   if (!CONFIG["configurado"]) {
     CONFIG = RECEPTOR;
     CONFIG["configurado"] = true;
+    server.send(200, "text/json", F("{\"status\": \"OK\"}");
+    Serial.println(F("Configuração recebida e alocada com sucesso!"))
     return;
   }
 
@@ -92,7 +94,8 @@ void postConfigAPI() {
   CONFIG["semana"][5] = RECEPTOR["semana"][5] | false;
   CONFIG["semana"][6] = RECEPTOR["semana"][6] | true;
 
-  server.send(200, "text/json", CONFIG.as<String>());
+  server.send(200, "text/json", F("{\"status\": \"OK\"}");
+  Serial.println(F("Novo cronograma de rega recebido e alocado com sucesso!"))
 }
 void getConfigAPI() {
   server.send(200, "text/json", CONFIG.as<String>());
