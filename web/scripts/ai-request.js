@@ -11,7 +11,7 @@ export default function aiRequest(prompt) {
     "body": JSON.stringify({
       messages: [...prompt],
       temperature: 1,
-      model: "gpt-3.5-turbo-1106"
+      model: "gpt-3.5-turbo"
     })
   }
 
