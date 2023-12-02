@@ -11,7 +11,7 @@
 #define relePorta D0
 #define sensorPorta A0
 
-StaticJsonDocument<1536> CONFIG; // Toda configuracao do sistema, umidade, planta, temperatura etc...
+StaticJsonDocument<1800> CONFIG; // Toda configuracao do sistema, umidade, planta, temperatura etc...
 StaticJsonDocument<60> INFO; // Umidade captada pelo sensor
 
 unsigned long previousMillis = 0;
@@ -70,7 +70,7 @@ void getInfoAPI() {
   server.send(200, "text/json", INFO.as<String>());
 }
 void postConfigAPI() {
-  StaticJsonDocument<1536> RECEPTOR;
+  StaticJsonDocument<1800> RECEPTOR;
   DeserializationError error = deserializeJson(RECEPTOR, server.arg("plain"));
 
   if (error) {
