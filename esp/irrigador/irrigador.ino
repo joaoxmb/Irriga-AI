@@ -123,6 +123,8 @@ void lerUmidade() {
 }
 void lidaComRele() {
   int horas = timeClient.getHours(); // horas atual
+  Serial.print(F("Horas: "));
+  Serial.printls(horas);
 
   if (horas > 9 && horas < 16) { // periodo que não queremos que regue
     return;
