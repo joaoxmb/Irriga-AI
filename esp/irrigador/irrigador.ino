@@ -81,7 +81,7 @@ void postConfigAPI() {
   if (!CONFIG["configurado"]) {
     CONFIG = RECEPTOR;
     CONFIG["configurado"] = true;
-    server.send(200, "text/json", F("{\"status\": \"OK\"}");
+    server.send(200, "text/json", F("{\"status\": \"OK\"}"));
     Serial.println(F("Configuração recebida e alocada com sucesso!"))
     return;
   }
@@ -94,7 +94,7 @@ void postConfigAPI() {
   CONFIG["semana"][5] = RECEPTOR["semana"][5] | false;
   CONFIG["semana"][6] = RECEPTOR["semana"][6] | true;
 
-  server.send(200, "text/json", F("{\"status\": \"OK\"}");
+  server.send(200, "text/json", F("{\"status\": \"OK\"}"));
   Serial.println(F("Novo cronograma de rega recebido e alocado com sucesso!"))
 }
 void getConfigAPI() {
@@ -124,30 +124,36 @@ void lerUmidade() {
 void lidaComRele() {
   int horas = timeClient.getHours(); // horas atual
 
-  if (INFO["umidade"] <= CONFIG["umidade"]["min"]) {
-    if (horas > 9 && horas < 16) { // periodo que não queremos que regue
+  if (horas > 9 && horas < 16) { // periodo que não queremos que regue
+    return;
+  }
+
+  int hoje = timeClient.getDay();
+  
+  if (CONFIG["semana"][hoje]) { // Se o dia da semana estiver true para regar
+    if (INFO["umidade"] <= CONFIG["umidade"]["min"]) {
+      digitalWrite(relePorta, HIGH); // liga sistema
+
       return;
     }
+  } else if (CONFIG["seguranca"] && INFO["umidade"] <= 5) {
     digitalWrite(relePorta, HIGH); // liga sistema
+
+    return;
   }
+
   if(INFO["umidade"] >= CONFIG["umidade"]["max"]) {
     digitalWrite(relePorta, LOW); // Desliga sistema
   }
+
 }
 void regar() {
   if (CONFIG["configurado"] && INFO["umidade"] > 0) { // Se o sistema estiver configurado e o sensor estiver instalado corretamente
-    int hoje = timeClient.getDay();
-
-    if (CONFIG["semana"][hoje]) { // Se o dia da semana estiver true para regar
-      lidaComRele();
-    } else if (CONFIG["seguranca"]) { // Se o dia não estiver para regar e o modo de seguranca estiver ativado
-      lidaComRele();
-    }
+    lidaComRele();
     return;
   }
-  if (INFO["umidade"] == 0) {
-    digitalWrite(relePorta, LOW);
-  }
+
+  digitalWrite(relePorta, LOW);
 }
 
 void iniciarWifi() {
