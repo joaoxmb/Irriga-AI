@@ -12,28 +12,29 @@ function about(planta) {
 function temperature(temperature) {
   $("#system-temperature").text(Math.floor(temperature));
 }
+
+let send;
+function sendWeekToSystem(params, callback) {
+  clearTimeout(send);
+  send = setTimeout(() => {
+    espRequest({ body: params, method: "POST", type: "config" })
+      .then((response) => response.json())
+      .then((data) => {
+        if (callback !== undefined) {
+          return callback(data);
+        }
+      })
+      .catch((error) => {
+        console.log("Houve um erro ao enviar os parametros, tentando novamente", error);
+        sendWeekToSystem(params, callback);
+      })
+  }, 3000);
+};
+  
 function week(semana) {
   const elementoSemana = $("#semana").html("");
   const diaDaSemana = Number(moment().format("d"));
   const nomesDiasDaSemana = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
-
-  let send;
-  function sendWeekToSystem(params, callback) {
-    clearTimeout(send);
-    send = setTimeout(() => {
-      espRequest({ body: params, method: "POST", type: "config" })
-        .then((response) => response.json())
-        .then((data) => {
-          if (callback !== undefined) {
-            return callback(data);
-          }
-        })
-        .catch((error) => {
-          console.log("Houve um erro ao enviar os parametros, tentando novamente", error);
-          sendWeekToSystem(params, callback);
-        })
-    }, 3000);
-  };
 
   const handleSemana = (index, input) => {
     const value = $(input).is(":checked");
