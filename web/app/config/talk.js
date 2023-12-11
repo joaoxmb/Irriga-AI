@@ -25,8 +25,6 @@ async function definirParametros() {
           }`,
         delay: 2000
       })
-      await chat("ia", {text: PARAMS.planta.sobre})
-    })
     .catch(async (error) => {
       await chat("ia", { text: error.mensagem || "Error" })
       await chat("ia", { text: "Desculpe, terei que pedir que preencha novamente o campo de qual planta estaremos regando.", delay: 1000 })
